@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Github api</title>
+</head>
+<body>
+	<main>
+		<header>
+			<h1>devfinder</h1>
+			<div>
+				<p class="mood-state" id="mood-state">Light</p>
+				<img class="mood-state-icon" id="mood-state-icon" src="images/icon-moon.svg" alt="moon icon" />
+			</div>
+		</header>
+
+		<div class="search-box">
+			<img class="search-box-icon" src="" alt="" />
+			<button class="search-box-button">Search</button>
+		</div>
+
+		<content>
+			<img class="user-image" id="user-image" src="" alt="" />
+			<div class="user-info">
+				<h2 class="username" id="username"></h2>
+				<a class="user-brand" id="user-brand" href="#"></a>
+				<p class="user-bio" id="user-bio"></p>	
+				<small class="join-date" id="join-date"></small>
+			</div>
+
+			<div class="user-statics">
+				<ul class="user-statics-container">
+					<li class="user-static-container">
+						<h2 class="user-static">Repos</h2>
+						<h3 class="user-static-value" id="user-static-repos"></h3>
+					</li>
+
+					<li class="user-static-container">
+						<h2 class="user-static">Follwers</h2>
+						<h3 class="user-static-value" id="user-static-followers"></h3>
+					</li>
+
+					<li class="user-static-container">
+						<h2 class="user-static">Following</h2>
+						<h3 class="user-static-value" id="user-static-following"></h3>
+					</li>
+				</ul>
+			</div>
+
+			<div class="user-accounts">
+				
+				<p>
+				<img src="images/icon-location.svg" alt="location" />
+					<span 
+						class="user-accounts-value" 
+						id="user-accounts-location"
+					></span>
+				</p>
+
+				<p>
+					<img src="images/icon-website.svg" alt="website" />
+					
+					<span 
+						class="user-accounts-value" 
+						id="user-accounts-website"
+					></span>
+				</p>
+
+				<p>
+					<img src="images/icon-twitter.svg" alt="twitter" />
+					
+					<span 
+						class="user-accounts-value" 
+						id="user-accounts-twitter"
+					></span>
+				</p>
+
+				<p>
+					<img src="images/icon-company.svg" alt="company" />
+					
+					<span 
+						class="user-accounts-value" 
+						id="user-accounts-company"
+					></span>
+				</p>
+
+			</div>
+		</content>
+
+	</main>
+</body>
+</html>
