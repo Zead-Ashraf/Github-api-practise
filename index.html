@@ -3,47 +3,54 @@
 <head>
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="css/style.css">
 	<title>Github api</title>
 </head>
 <body>
 	<main>
 		<header>
 			<h1>devfinder</h1>
-			<div>
+			<div class="mood-state-container">
 				<p class="mood-state" id="mood-state">Light</p>
 				<img class="mood-state-icon" id="mood-state-icon" src="images/icon-moon.svg" alt="moon icon" />
 			</div>
 		</header>
 
-		<div class="search-box">
-			<img class="search-box-icon" src="" alt="" />
-			<button class="search-box-button">Search</button>
-		</div>
+		<form class="search-box-form">
+			<div class="search-box-container">
+				<div class="search-box-icon-container"><img class="search-box-icon" src="images/icon-search.svg" alt="search"></div>
+				<input type="text" class="user-input" id="user-input" placeholder="Search Github username" />
+				<div class="search-box-button-container"><button class="search-box-button" id="submit">Search</button></div>
+			</div>
+		</form>
 
 		<content>
-			<img class="user-image" id="user-image" src="" alt="" />
 			<div class="user-info">
-				<h2 class="username" id="username"></h2>
-				<a class="user-brand" id="user-brand" href="#"></a>
-				<p class="user-bio" id="user-bio"></p>	
-				<small class="join-date" id="join-date"></small>
+				<div class="user-image-container"><img class="user-image" id="user-image" src="images/image-jeremy.png" alt="user photo" /></div>
+				<div class="user-info-text-container">
+					<h2 class="username" id="username">The octect</h2>
+					<a class="user-brand" id="user-brand" href="#">@octect</a>
+					<small class="join-date" id="join-date">Joined <span>25 Jan 2011</span></small>
+				</div>
 			</div>
+
+			<p class="user-bio" id="user-bio">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut</p>
 
 			<div class="user-statics">
 				<ul class="user-statics-container">
 					<li class="user-static-container">
 						<h2 class="user-static">Repos</h2>
-						<h3 class="user-static-value" id="user-static-repos"></h3>
+						<h3 class="user-static-value" id="user-static-repos">88</h3>
 					</li>
 
 					<li class="user-static-container">
 						<h2 class="user-static">Follwers</h2>
-						<h3 class="user-static-value" id="user-static-followers"></h3>
+						<h3 class="user-static-value" id="user-static-followers">88</h3>
 					</li>
 
 					<li class="user-static-container">
 						<h2 class="user-static">Following</h2>
-						<h3 class="user-static-value" id="user-static-following"></h3>
+						<h3 class="user-static-value" id="user-static-following">88</h3>
 					</li>
 				</ul>
 			</div>
@@ -55,7 +62,7 @@
 					<span 
 						class="user-accounts-value" 
 						id="user-accounts-location"
-					></span>
+					>Lorem ipsum dolor sit amet</span>
 				</p>
 
 				<p>
@@ -64,7 +71,7 @@
 					<span 
 						class="user-accounts-value" 
 						id="user-accounts-website"
-					></span>
+					>Lorem ipsum dolor sit amet</span>
 				</p>
 
 				<p>
@@ -73,7 +80,7 @@
 					<span 
 						class="user-accounts-value" 
 						id="user-accounts-twitter"
-					></span>
+					>Lorem ipsum dolor sit amet</span>
 				</p>
 
 				<p>
@@ -82,7 +89,7 @@
 					<span 
 						class="user-accounts-value" 
 						id="user-accounts-company"
-					></span>
+					>Lorem ipsum dolor sit amet</span>
 				</p>
 
 			</div>
