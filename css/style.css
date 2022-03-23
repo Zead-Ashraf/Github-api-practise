@@ -1,12 +1,16 @@
 :root {
 	--main-bg: #141D2F;
 	--content-bg: #1E2A47;
-	--user-static-bg: rgba(0, 0, 0, 0.3);;
+	--user-static-bg: rgba(0, 0, 0, 0.3);
 	--user-static-text-color: #d0d0d0;
 	--text-color: white;
 	--filter-value: brightness(1000);
 	/* Btn  */
 	--btn-bg: #0079FF;
+}
+
+.shadow {
+	box-shadow: 0px 10px 14px -6px #00000040;
 }
 
 .muted {
@@ -25,6 +29,7 @@ html, body, main {
 	margin: 0;
 	padding: 0;
 	background-color: var(--main-bg);
+	transition: background-color 1s ease;
 }
 
 @media (min-width: 992px) {
@@ -36,12 +41,11 @@ html, body, main {
 	}
 }
 
-
 /*********************************************************************************************/
 
 header {
 	display: flex;
-	justify-content: center;
+	justify-content: space-between;
 	align-items: center;
 	margin-bottom: 2rem;
 	margin-top: 2rem;
@@ -49,9 +53,9 @@ header {
 
 .mood-state-container, header h1 {
 	display: inline-block;
-	width: 40%;
 	color: var(--text-color);
 	margin: 0 5%;
+	transition: color 1s ease;
 }
 
 header h1 {
@@ -71,7 +75,6 @@ header h1 {
 @media (min-width: 992px) {
 	header {
 		width: 75%;
-		justify-content: space-between;
 	}
 
 	.mood-state-container, header h1 {
@@ -110,6 +113,7 @@ header h1 {
 	height: 100%;
 	background-color: var(--content-bg);
 	padding: 0 4%;
+	transition: background-color 1s ease;
 }
 
 .search-box-icon-container {
@@ -123,6 +127,7 @@ header h1 {
 	background-color: var(--content-bg);
 	color: var(--text-color);
 	border: none;
+	transition: background-color 1s ease;
 }
 
 .user-input::-moz-placeholder {
@@ -138,6 +143,10 @@ header h1 {
 .user-input::placeholder {
 	color: white;
 	font-size: 0.8rem;
+}
+
+.user-input-light::placeholder {
+	color: black;
 }
 
 .search-box-icon {
@@ -156,6 +165,7 @@ header h1 {
 	border: none;
 	font-size: 1.1rem;
 	border-radius: 10px;
+	transition: color 1s ease;
 }
 
 @media (min-width: 992px) {
@@ -188,6 +198,7 @@ content {
 	margin-left: 5%;
 	padding: 25px;
 	border-radius: 15px;
+	transition: background-color 1s ease;
 }
 
 .user-image-container {
@@ -278,6 +289,7 @@ content {
 	padding: 5%;
 	background-color: var(--user-static-bg);
 	border-radius: 12px;
+	transition: background-color 1s ease;
 }
 
 .user-statics-container {
@@ -299,6 +311,7 @@ content {
 	color: var(--user-static-text-color);
 	font-size: 14px;
 	margin: 0px 13px;
+	transition: background-color 1s ease;
 }
 
 .user-static-value {
@@ -360,7 +373,7 @@ content {
 /*********************************************************************************************/
 
 @media (orientation:  landscape) {
-	html, body, main {
+	main {
 		height: auto;
 	}
 

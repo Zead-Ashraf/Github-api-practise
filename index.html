@@ -9,22 +9,22 @@
 <body>
 	<main>
 		<header>
-			<h1>devfinder</h1>
-			<div class="mood-state-container">
-				<p class="mood-state" id="mood-state">Light</p>
-				<img class="mood-state-icon" id="mood-state-icon" src="images/icon-moon.svg" alt="moon icon" />
+			<h1 id="logo">devfinder</h1>
+			<div class="mood-state-container" id="toogle-button">
+				<p class="mood-state" id="mood-state-text">Light</p>
+				<img class="mood-state-icon" id="mood-state-icon" src="images/icon-sun.svg" alt="moon icon" />
 			</div>
 		</header>
 
-		<form class="search-box-form">
-			<div class="search-box-container">
+		<div class="search-box-form">
+			<div class="search-box-container" id="search-box-container">
 				<div class="search-box-icon-container"><img class="search-box-icon" src="images/icon-search.svg" alt="search"></div>
 				<input type="text" class="user-input" id="user-input" placeholder="Search Github username" />
 				<div class="search-box-button-container"><button class="search-box-button" id="submit">Search</button></div>
 			</div>
-		</form>
+		</div>
 
-		<content>
+		<content id="content-card">
 			<div class="user-info">
 				<div class="user-image-container"><img class="user-image" id="user-image" src="images/image-jeremy.png" alt="user photo" /></div>
 				<div class="user-info-text-container">
@@ -96,5 +96,7 @@
 		</content>
 
 	</main>
+
+	<script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>
