@@ -1,13 +1,132 @@
-//FrontEnd section (Mood toogle)
+// BackEnd section
+const url = "https://api.github.com/users/",
+ submit = document.getElementById("submit"),
+  userAvatar = document.getElementById("user-image"),
+  username = document.getElementById("username"),
+  userBrand = document.getElementById("user-brand"),
+  userBrandValue = document.getElementById("user-brand-vlaue"),
+  joinDate = document.getElementById("join-date"),
+  userBio = document.getElementById("user-bio"),
+  userRepos = document.getElementById("user-static-repos"),
+  userFollowers = document.getElementById("user-static-followers"),
+  userFollowing = document.getElementById("user-static-following"),
+  userLocation =document.getElementById("user-accounts-location"),
+  userWebsite = document.getElementById("user-accounts-website"),
+  userTwitter = document.getElementById("user-accounts-twitter"),
+  userCompany = document.getElementById("user-accounts-company");
+
+let userInputValue = document.getElementById("user-input").value;
+
+let usernamealt;
+
+submit.addEventListener("click", RequestApi)
+
+function RequestApi () {
+	userInputValue = document.getElementById("user-input").value;
+
+	userInputValue = userInputValue.trim().replaceAll(" ", "");
+
+	fetch(url+userInputValue).then((result) => result.json()).then((data) => {
+		if (data.message == "Not Found") {
+	  		document.getElementById("warnning").innerHTML = "No Result"
+		} 
+
+		else {
+			usernamealt = data.login;
+	  		userAvatar.src = data.avatar_url;
+	  		setUsername(data.name, username);
+	  		userBrand.href = checkdata(data.html_url, "url");
+	  		userBrandValue.innerHTML = data.login;
+	  		joinDate.childNodes[1].innerHTML = data.created_at.split(/-|[A-Z]\w/)[2];
+	  		joinDate.childNodes[3].innerHTML = monthConvert(data.created_at.split(/-|[A-Z]\w/)[1]);
+	  		joinDate.childNodes[5].innerHTML = data.created_at.split(/-|[A-Z]\w/)[0];
+	  		userBio.innerHTML = checkdata(data.bio, "bio");
+	  		userRepos.innerHTML = checkdata(data.public_repos, "statics");
+	  		userFollowers.innerHTML = checkdata(data.followers, "statics");
+	  		userFollowing.innerHTML = checkdata(data.following, "statics");
+	  		userLocation.innerHTML = checkdata(data.location, "accounts", userLocation);
+			userWebsite.innerHTML = checkdata(data.blog, "accounts", userWebsite);
+			userTwitter.innerHTML = checkdata(data.twitter_username, "accounts", userTwitter);
+			userCompany.innerHTML = checkdata(data.company, "accounts", userCompany);
+	  		console.log(data)
+		}
+	});
+}
+
+function setUsername (data, inject) {
+	if (data == null) {
+		inject.innerHTML = usernamealt;
+	}
+
+	else {
+		inject.innerHTML = data;
+	}
+}
+
+function checkdata (data, testLevel, target="") {
+	if (!data && testLevel == "url") {
+		userBrand.color = "--text-color";
+		return "#"
+	}
+
+	else if (!data && testLevel == "bio") {
+		return "This user has No bio"
+	}
+
+	else if (!data && testLevel == "statics") {
+		return "#"
+	}
+
+	else if (!data && testLevel == "accounts") {
+		target.parentElement.classList = "unavailable"
+		return "Not Available"
+	}
+
+
+	else {
+		return data
+	}
+}
+
+function monthConvert (month) {
+	switch (month) {
+		case "01":
+			return "Jan";
+		case "02":
+			return "Feb";
+		case "03":
+			return "Mar";
+		case "04":
+			return "Apr";
+		case "05":
+			return "May";
+		case "06":
+			return "Jun";
+		case "07":
+			return "Jul";
+		case "08":
+			return "Aug";
+		case "09":
+			return "Sep";
+		case "10":
+			return "Oct";
+		case "11":
+			return "Nov";
+		case "12":
+			return "Dec";
+  	};
+}
+
+/***************************** FrontEnd section (Mood toogle) ********************************/
 
 const root = document.documentElement.style,
  logo = document.getElementById("logo"),
  toogleButton = document.getElementById("toogle-button"),
  searchBox = document.getElementById("search-box-container"),
- userInput = document.getElementById("user-input"),
  moodIcon = document.getElementById("mood-state-icon"),
  moodText = document.getElementById("mood-state-text"),
- contentCard = document.getElementById("content-card");
+ contentCard = document.getElementById("content-card"),
+ userInput = document.getElementById("user-input");
 
 // toggle key
 let mood = "dark";
@@ -68,5 +187,3 @@ function DarkMode () {
 
 	mood = "dark";
 }
-
-/***************************** backEnd section **********************************************/

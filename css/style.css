@@ -13,9 +13,10 @@
 	box-shadow: 0px 10px 14px -6px #00000040;
 }
 
-.muted {
-	filter: brightness(444%) opacity(50%);
+.unavailable {
+	filter: opacity(50%);
 }
+
 
 * {
 	box-sizing: border-box;
@@ -121,7 +122,7 @@ header h1 {
 }
 
 .user-input {
-	width: 80%;
+	width: 40%;
 	height: 100%;
 	font-size: 1rem;
 	background-color: var(--content-bg);
@@ -149,16 +150,19 @@ header h1 {
 	color: black;
 }
 
-.search-box-icon {
+.warnning {
+	width: 60%;
+	color: red;
+	margin-right: 15px;
 }
 
 .search-box-button-container {
-	width: 30%;
+	width: 47%;
 	border-radius: 0 10px 10px 0;
 }
 
 .search-box-button {
-	width: 100%;
+	width: 50%;
 	height: 75%;
 	background-color: #0079FF;
 	color: var(--text-color);
@@ -211,6 +215,7 @@ content {
 
 .user-image {
 	max-width: 100%;
+	border-radius: 50%;
 }
 
 .user-info-text-container {
@@ -343,6 +348,7 @@ content {
 }
 
 .user-accounts p img {
+	max-height: 24px;
 	filter: var(--filter-value);
 }
 

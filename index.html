@@ -20,7 +20,10 @@
 			<div class="search-box-container" id="search-box-container">
 				<div class="search-box-icon-container"><img class="search-box-icon" src="images/icon-search.svg" alt="search"></div>
 				<input type="text" class="user-input" id="user-input" placeholder="Search Github username" />
-				<div class="search-box-button-container"><button class="search-box-button" id="submit">Search</button></div>
+				<div class="search-box-button-container">
+					<span class="warnning" id="warnning"></span>
+					<button class="search-box-button" id="submit">Search</button>
+				</div>
 			</div>
 		</div>
 
@@ -29,8 +32,10 @@
 				<div class="user-image-container"><img class="user-image" id="user-image" src="images/image-jeremy.png" alt="user photo" /></div>
 				<div class="user-info-text-container">
 					<h2 class="username" id="username">The octect</h2>
-					<a class="user-brand" id="user-brand" href="#">@octect</a>
-					<small class="join-date" id="join-date">Joined <span>25 Jan 2011</span></small>
+					<a class="user-brand" id="user-brand" href="#"><span>@</span><span id="user-brand-vlaue">octect</span></a>
+					<small class="join-date">Joined <span id="join-date">
+					<span id="day"></span> <span id="month"></span> <span id="year"></span>
+					</span></small>
 				</div>
 			</div>
 
@@ -96,7 +101,7 @@
 		</content>
 
 	</main>
-
+	
 	<script type="text/javascript" src="js/main.js"></script>
 </body>
 </html>
