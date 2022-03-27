@@ -1,37 +1,14 @@
-// BackEnd section
-const url = "https://api.github.com/users/",
- submit = document.getElementById("submit"),
-  userAvatar = document.getElementById("user-image"),
-  username = document.getElementById("username"),
-  userBrand = document.getElementById("user-brand"),
-  userBrandValue = document.getElementById("user-brand-vlaue"),
-  joinDate = document.getElementById("join-date"),
-  userBio = document.getElementById("user-bio"),
-  userRepos = document.getElementById("user-static-repos"),
-  userFollowers = document.getElementById("user-static-followers"),
-  userFollowing = document.getElementById("user-static-following"),
-  userLocation =document.getElementById("user-accounts-location"),
-  userWebsite = document.getElementById("user-accounts-website"),
-  userTwitter = document.getElementById("user-accounts-twitter"),
-  userCompany = document.getElementById("user-accounts-company");
+// fetch octocat
 
-let userInputValue = document.getElementById("user-input").value;
-
-let usernamealt;
-
-submit.addEventListener("click", RequestApi)
-
-function RequestApi () {
-	userInputValue = document.getElementById("user-input").value;
-
-	userInputValue = userInputValue.trim().replaceAll(" ", "");
-
-	fetch(url+userInputValue).then((result) => result.json()).then((data) => {
+window.onload = () => {
+  fetch(url+"octocat").then((result) => result.json()).then((data) => {
 		if (data.message == "Not Found") {
 	  		document.getElementById("warnning").innerHTML = "No Result"
 		} 
 
 		else {
+			newStart();
+
 			usernamealt = data.login;
 	  		userAvatar.src = data.avatar_url;
 	  		setUsername(data.name, username);
@@ -48,9 +25,89 @@ function RequestApi () {
 			userWebsite.innerHTML = checkdata(data.blog, "accounts", userWebsite);
 			userTwitter.innerHTML = checkdata(data.twitter_username, "accounts", userTwitter);
 			userCompany.innerHTML = checkdata(data.company, "accounts", userCompany);
-	  		console.log(data)
 		}
 	});
+}
+
+// BackEnd section
+const url = "https://api.github.com/users/",
+ form = document.getElementById("form"),
+  userAvatar = document.getElementById("user-image"),
+  username = document.getElementById("username"),
+  userBrand = document.getElementById("user-brand"),
+  userBrandValue = document.getElementById("user-brand-vlaue"),
+  joinDate = document.getElementById("join-date"),
+  userBio = document.getElementById("user-bio"),
+  userRepos = document.getElementById("user-static-repos"),
+  userFollowers = document.getElementById("user-static-followers"),
+  userFollowing = document.getElementById("user-static-following"),
+  userLocation =document.getElementById("user-accounts-location"),
+  userWebsite = document.getElementById("user-accounts-website"),
+  userTwitter = document.getElementById("user-accounts-twitter"),
+  userCompany = document.getElementById("user-accounts-company");
+
+/**********************************************************************************/
+
+// remove loader
+let loadingScreen = document.querySelector(".loader");
+
+userAvatar.onload = () => {
+	setTimeout(hideLoading, 5000)
+}
+
+function hideLoading() {
+  loadingScreen.style.cssText = "opacity: 0;";
+  setTimeout(() => (loadingScreen.style.cssText = "display: none;"), 1000);
+}
+
+/**********************************************************************************/
+
+let userInputValue = document.getElementById("user-input").value;
+
+let usernamealt;
+
+form.addEventListener("submit", RequestApi)
+
+function RequestApi (e) {
+	e.preventDefault();
+
+	userInputValue = document.getElementById("user-input").value;
+
+	userInputValue = userInputValue.trim().replaceAll(" ", "");
+
+	fetch(url+userInputValue).then((result) => result.json()).then((data) => {
+		if (data.message == "Not Found") {
+	  		document.getElementById("warnning").innerHTML = "No Result"
+		} 
+
+		else {
+			newStart();
+
+			usernamealt = data.login;
+	  		userAvatar.src = data.avatar_url;
+	  		setUsername(data.name, username);
+	  		userBrand.href = checkdata(data.html_url, "url");
+	  		userBrandValue.innerHTML = data.login;
+	  		joinDate.childNodes[1].innerHTML = data.created_at.split(/-|[A-Z]\w/)[2];
+	  		joinDate.childNodes[3].innerHTML = monthConvert(data.created_at.split(/-|[A-Z]\w/)[1]);
+	  		joinDate.childNodes[5].innerHTML = data.created_at.split(/-|[A-Z]\w/)[0];
+	  		userBio.innerHTML = checkdata(data.bio, "bio");
+	  		userRepos.innerHTML = checkdata(data.public_repos, "statics");
+	  		userFollowers.innerHTML = checkdata(data.followers, "statics");
+	  		userFollowing.innerHTML = checkdata(data.following, "statics");
+	  		userLocation.innerHTML = checkdata(data.location, "accounts", userLocation);
+			userWebsite.innerHTML = checkdata(data.blog, "accounts", userWebsite);
+			userTwitter.innerHTML = checkdata(data.twitter_username, "accounts", userTwitter);
+			userCompany.innerHTML = checkdata(data.company, "accounts", userCompany);
+		}
+	});
+}
+
+function newStart () {
+	userLocation.parentElement.classList = "";
+	userWebsite.parentElement.classList = "";
+	userTwitter.parentElement.classList = "";
+	userCompany.parentElement.classList = "";
 }
 
 function setUsername (data, inject) {

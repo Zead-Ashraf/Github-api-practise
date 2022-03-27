@@ -7,6 +7,14 @@
 	--filter-value: brightness(1000);
 	/* Btn  */
 	--btn-bg: #0079FF;
+	/* Layout */
+	--main-width: 90%;
+}
+
+@media (min-width: 992px) {
+	:root {
+		--main-width: 60%;
+	}
 }
 
 .shadow {
@@ -44,6 +52,77 @@ html, body, main {
 
 /*********************************************************************************************/
 
+section.loader {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #eee;
+}
+
+section.loader span {
+  position: relative;
+  width: 36px;
+  height: 37px;
+  background: #eaeef0;
+  margin: 0 10px;
+  border-radius: 50%;
+  border: 6px solid #eaeef0;
+  box-shadow: -8px -8px 15px rgba(255, 255, 255, 1),
+    8px 8px 15px rgba(0, 0, 0, 0.2), inset 3px 3px 5px rgba(0, 0, 0, 0.1),
+    inset -1px -1px 5px rgba(255, 255, 255, 1);
+}
+
+section.loader span::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #5c89ff;
+  border-radius: 50%;
+  box-shadow: -8px -8px 15px rgba(255, 255, 255, 1),
+    8px 8px 15px rgba(0, 0, 0, 0.2);
+  transform: scale(0);
+  animation: animate 3s linear infinite, animateColor 3s linear infinite;
+  animation-delay: calc(var(--i) * 0.2s);
+}
+
+@keyframes animate {
+  0%,
+  90.99%,
+  70.00001% {
+    transform: scale(0);
+  }
+
+  10%,
+  70% {
+    transform: scale(1);
+  }
+}
+
+@keyframes animateColor {
+  0% {
+    filte: hue-rotate(0deg);
+  }
+
+  100% {
+    filter: hue-rotate(360deg);
+  }
+}
+
+@media (max-width: 991px) {
+	section.loader {
+		height: 120%;
+		margin-top: -9%;
+	}
+}
+
+/*********************************************************************************************/
+
 header {
 	display: flex;
 	justify-content: space-between;
@@ -75,7 +154,7 @@ header h1 {
 
 @media (min-width: 992px) {
 	header {
-		width: 75%;
+		width: var(--main-width);
 	}
 
 	.mood-state-container, header h1 {
@@ -100,7 +179,7 @@ header h1 {
 }
 
 .search-box-container {
-	width: 90%;
+	width: var(--main-width);
 	height: 100%;
 	display: flex;
 	justify-content: center;
@@ -113,16 +192,16 @@ header h1 {
 	justify-content: center;
 	height: 100%;
 	background-color: var(--content-bg);
-	padding: 0 4%;
 	transition: background-color 1s ease;
 }
 
 .search-box-icon-container {
 	border-radius: 10px 0 0 10px;
+	padding: 0 1% 0 2%;
 }
 
 .user-input {
-	width: 40%;
+	width: 56%;
 	height: 100%;
 	font-size: 1rem;
 	background-color: var(--content-bg);
@@ -157,12 +236,13 @@ header h1 {
 }
 
 .search-box-button-container {
-	width: 47%;
+	width: 38%;
 	border-radius: 0 10px 10px 0;
+	padding: 0 2% 0 0;;
 }
 
 .search-box-button {
-	width: 50%;
+	width: 75%;
 	height: 75%;
 	background-color: #0079FF;
 	color: var(--text-color);
@@ -170,15 +250,12 @@ header h1 {
 	font-size: 1.1rem;
 	border-radius: 10px;
 	transition: color 1s ease;
+	padding: 0 1% 0 0;
 }
 
 @media (min-width: 992px) {
 	.search-box-form {
 		width: 100%;
-	}
-
-	.search-box-container {
-		width: 75%;
 	}
 
 	.user-input {
@@ -194,7 +271,7 @@ header h1 {
 
 content {
 	display: block;
-	width: 90%;
+	width: var(--main-width);
 	height: auto;
 	background-color: var(--content-bg);
 	color: var(--text-color);
@@ -216,6 +293,7 @@ content {
 .user-image {
 	max-width: 100%;
 	border-radius: 50%;
+	margin: 0px 0 -4px 0;
 }
 
 .user-info-text-container {
@@ -245,7 +323,6 @@ content {
 
 @media (min-width: 992px) {
 	content {
-		width: 75%;
 		margin-left: 0;
 		padding: 37px;
 	}
@@ -393,7 +470,7 @@ content {
 	}
 
 	.user-image-container {
-		max-width: 12%;
+		max-width: 14%;
 	}
 
 	.user-statics {
@@ -410,5 +487,11 @@ content {
 		justify-content: center;
 		align-items: center;
 		margin-right: 4%;
+	}
+}
+
+@media (min-width: 641px) and (max-width: 992px) and (orientation: portrait) {
+	.user-image-container {
+		max-width: 17%;
 	}
 }
