@@ -1,35 +1,12 @@
-// fetch octocat
+// ! fetch octocat
 
 window.onload = () => {
-  fetch(url+"octocat").then((result) => result.json()).then((data) => {
-		if (data.message == "Not Found") {
-	  		document.getElementById("warnning").innerHTML = "No Result"
-		} 
-
-		else {
-			newStart();
-
-			usernamealt = data.login;
-	  		userAvatar.src = data.avatar_url;
-	  		setUsername(data.name, username);
-	  		userBrand.href = checkdata(data.html_url, "url");
-	  		userBrandValue.innerHTML = data.login;
-	  		joinDate.childNodes[1].innerHTML = data.created_at.split(/-|[A-Z]\w/)[2];
-	  		joinDate.childNodes[3].innerHTML = monthConvert(data.created_at.split(/-|[A-Z]\w/)[1]);
-	  		joinDate.childNodes[5].innerHTML = data.created_at.split(/-|[A-Z]\w/)[0];
-	  		userBio.innerHTML = checkdata(data.bio, "bio");
-	  		userRepos.innerHTML = checkdata(data.public_repos, "statics");
-	  		userFollowers.innerHTML = checkdata(data.followers, "statics");
-	  		userFollowing.innerHTML = checkdata(data.following, "statics");
-	  		userLocation.innerHTML = checkdata(data.location, "accounts", userLocation);
-			userWebsite.innerHTML = checkdata(data.blog, "accounts", userWebsite);
-			userTwitter.innerHTML = checkdata(data.twitter_username, "accounts", userTwitter);
-			userCompany.innerHTML = checkdata(data.company, "accounts", userCompany);
-		}
-	});
+	// ! request the main account of the chellange
+	RequestApi("octocat");
 }
 
-// BackEnd section
+// ! BackEnd section
+	// ! define important vars
 const url = "https://api.github.com/users/",
  form = document.getElementById("form"),
   userAvatar = document.getElementById("user-image"),
@@ -48,11 +25,13 @@ const url = "https://api.github.com/users/",
 
 /**********************************************************************************/
 
-// remove loader
+// ! remove loader
 let loadingScreen = document.querySelector(".loader");
 
+// ! the image is the last thing what will load, so I build on it.
+
 userAvatar.onload = () => {
-	setTimeout(hideLoading, 5000)
+	setTimeout(hideLoading, 5000) // ! to see the full animation of the loader
 }
 
 function hideLoading() {
@@ -61,29 +40,33 @@ function hideLoading() {
 }
 
 /**********************************************************************************/
-
+// ! gather User Input from the form
 let userInputValue = document.getElementById("user-input").value;
 
 let usernamealt;
 
-form.addEventListener("submit", RequestApi)
+form.addEventListener("submit", mainFunction)
 
-function RequestApi (e) {
+function mainFunction (e) {
 	e.preventDefault();
-
 	userInputValue = document.getElementById("user-input").value;
-
+	// ! validate the input
 	userInputValue = userInputValue.trim().replaceAll(" ", "");
+	RequestApi(userInputValue)
+}
 
+function RequestApi (userInputValue) {
 	fetch(url+userInputValue).then((result) => result.json()).then((data) => {
 		if (data.message == "Not Found") {
 	  		document.getElementById("warnning").innerHTML = "No Result"
 		} 
 
 		else {
+			// ! to delete all the styling from the last fetch
 			newStart();
 
-			usernamealt = data.login;
+			usernamealt = data.login; // ! we will need this if the user name is not found
+
 	  		userAvatar.src = data.avatar_url;
 	  		setUsername(data.name, username);
 	  		userBrand.href = checkdata(data.html_url, "url");
@@ -110,6 +93,7 @@ function newStart () {
 	userCompany.parentElement.classList = "";
 }
 
+// ! validate username and test if it found
 function setUsername (data, inject) {
 	if (data == null) {
 		inject.innerHTML = usernamealt;
@@ -174,8 +158,9 @@ function monthConvert (month) {
   	};
 }
 
-/***************************** FrontEnd section (Mood toogle) ********************************/
+/***************************** ! FrontEnd section (Mood toogle) ********************************/
 
+// ! define important vars
 const root = document.documentElement.style,
  logo = document.getElementById("logo"),
  toogleButton = document.getElementById("toogle-button"),
