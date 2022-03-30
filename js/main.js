@@ -87,6 +87,7 @@ function RequestApi (userInputValue) {
 }
 
 function newStart () {
+	document.getElementById("warnning").innerHTML = ""
 	userLocation.parentElement.classList = "";
 	userWebsite.parentElement.classList = "";
 	userTwitter.parentElement.classList = "";
